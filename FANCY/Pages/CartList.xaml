@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.CartList"
+             Title="EZ Sales Manager"
+             BackgroundColor="#e5e5e5"
+             Visual="Default">
+    
+    <StackLayout>
+        <ScrollView VerticalOptions="StartAndExpand">
+                <StackLayout>
+
+                    <!--<Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Image  Grid.Row="0" Grid.Column="0" Source="slide_1.jpg" 
+                                    Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,0"/>
+
+                        <Label Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" x:Name="Lbl_Title">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span x:Name="lbl_Company" FontSize="Large" FontAttributes="Bold" ForegroundColor="White" />
+                                    <Span x:Name="lbl_Date" FontSize="17" ForegroundColor="White" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>                        
+                    </Grid>-->
+                    
+                              
+                    
+                    <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HeightRequest="600">
+                            
+                            
+                            <ListView x:Name="ItemOrderList" HeightRequest="80" HasUnevenRows="True" HorizontalOptions="Center" SelectionMode="None" ItemTapped="OrderList_ItemTapped" Margin="0, 10, 0, 0">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                <ViewCell Height="100">
+                                    <ViewCell.View>
+                                        <Frame CornerRadius="5" Margin="5" HasShadow="True" BorderColor="DarkBlue" Padding="5">
+                                            <StackLayout>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="0.5*" />
+                                                        <RowDefinition Height="0.5*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50*" />
+                                                        <ColumnDefinition Width="50*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding ol_custn}" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="11"
+                                                               VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                                                               HorizontalTextAlignment="Start" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_i_order" />
+
+                                                    <Label Text="{Binding ol_custadd}" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" FontSize="11"
+                                                                 VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                                                                 HorizontalTextAlignment="End" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_address" />
+                                                    
+                                                    <Label Text="{Binding ol_cust}" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="14" 
+                                                                    HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black"
+                                                                    Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_custname" />
+                                                    
+                                                    <Label Text="{Binding ol_damt, StringFormat='{0:$#,##0.00;($#,##0.00);Zero}'}" Grid.Row="1" Grid.Column="1" FontAttributes="Bold" FontSize="14"        
+                                                                VerticalTextAlignment="Center" HorizontalTextAlignment="End"
+                                                               Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_damt" TextColor="Black"/>
+                                                    
+
+                                                    <!--<Button Text="SUBMIT" Grid.Row="1" Grid.Column="2" BackgroundColor="LightGray" BorderColor="Black" BorderWidth="1"
+                                                                FontAttributes="Bold" FontSize="20" x:Name="Btn_submit"
+                                                                MinimumWidthRequest="100" WidthRequest="100" TextColor="Black" Padding="0" Margin="0, 0, 0, 0"
+                                                                Clicked="Btn_submit_Clicked"/>-->
+						    
+						                            <ActivityIndicator Grid.Row="1" Grid.Column="2" x:Name="activity_indicator"></ActivityIndicator>
+
+                                                </Grid>
+
+                                            </StackLayout>
+                                        </Frame>
+                                        
+                                    </ViewCell.View>
+                                    
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+ 
+        </StackLayout>
+</ContentPage>

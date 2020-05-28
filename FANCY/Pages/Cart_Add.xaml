@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:local="clr-namespace:FANCY.Controls"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.Cart_Add">
+
+<NavigationPage.TitleView>
+    <Label Text="ORDER PROCESS" HorizontalTextAlignment="Center" TextColor="Black" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+</NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <Grid Padding="0" ColumnSpacing="0" RowSpacing="0" Margin="0,1,1,5">
+            <StackLayout>
+                <ScrollView>
+                    <StackLayout>
+                        <ContentView>
+                            <Label x:Name="CustName"
+                                   TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        </ContentView>
+                        <ContentView>
+                            <Label x:Name="CustAddress" TextColor="Blue" FontSize="12" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        </ContentView>
+                        <ContentView>
+                            <Grid BackgroundColor="White">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.4*" />
+                                    <ColumnDefinition Width="0.3*" />
+                                    <ColumnDefinition Width="0.3*" />
+                                </Grid.ColumnDefinitions>
+                                <local:ExtendedEntry x:Name="txtBarcode" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" FontSize="20" Placeholder="Enter Item"
+                                       PlaceholderColor="Accent" BackgroundColor="White" ClearButtonVisibility="WhileEditing"
+                                       HorizontalTextAlignment="Center" Unfocused="Show_ItemPrice" Completed="BarcodePressed"/>
+                                <local:ExtendedEntry x:Name="txtQty" Grid.Row="0" Grid.Column="1" BackgroundColor="White" TextColor="Blue" FontSize="20"
+                                       Unfocused="QtyChangePressed" Completed="BarcodePressed" VerticalOptions="Center" HorizontalTextAlignment="Center" Keyboard="Numeric"
+                                       Placeholder="Enter Qty" PlaceholderColor="Accent" ClearButtonVisibility="WhileEditing"/>
+                                <local:ExtendedEntry x:Name="txtPrice" Grid.Row="0" Grid.Column="2" Text="0" TextColor="Blue" FontSize="20" Keyboard="Numeric"
+                                       Unfocused="PriceChangePressed" Completed="BarcodePressed" VerticalOptions="Center" HorizontalTextAlignment="Center"
+                                       BackgroundColor="White" Placeholder ="Enter Price" PlaceholderColor="Accent" ClearButtonVisibility="WhileEditing" />
+                                
+                            </Grid>
+                        </ContentView>
+                        <!--<ContentView>
+                            <Entry x:Name="txtBarcode" Grid.Row="0" Grid.Column="2" Margin="0,0,0,0" FontSize="20" Placeholder="Enter Item" PlaceholderColor="Accent"
+                                   ClearButtonVisibility="WhileEditing" HorizontalTextAlignment="Center" Completed="BarcodePressed"></Entry>
+                            <inputLayout:SfTextInputLayout
+                            Hint="ITEM" UnfocusedColor="Black"
+                            InputViewPadding="12" 
+                            ContainerType="Outlined"
+                            HelperText="ITEM CODE TO ENTER">
+                                <Entry x:Name="txtBarcode" Completed="BarcodePressed" />
+                                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                                    <inputLayout:LabelStyle FontSize="15" FontAttributes="Bold">
+                                        <inputLayout:LabelStyle.FontFamily>
+                                            <OnPlatform x:TypeArguments="x:String" iOS="Lobster-Regular" Android="" WinPhone="Assets/Fonts/Lobster-Regular.ttf#Lobster" />
+                                        </inputLayout:LabelStyle.FontFamily>
+                                    </inputLayout:LabelStyle>
+                                </inputLayout:SfTextInputLayout.HelperLabelStyle>
+                            </inputLayout:SfTextInputLayout>
+
+                        </ContentView>-->
+                        <ContentView>
+                            <Grid Padding="0" Margin="0, 0, 0, 1" BackgroundColor="DarkGray">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label x:Name="Lbl_Header" Text="Total: " Grid.Row="0" Grid.Column="0"
+                                                BackgroundColor="LightGray" FontAttributes="Bold" FontSize="15" 
+                                                MinimumHeightRequest="20" HeightRequest="20" MinimumWidthRequest="20"
+                                                WidthRequest="20" TextColor="Black" Margin="0, 0, 0, 0" HorizontalTextAlignment="Center" />
+                                <Label x:Name="Lbl_Header_TotalQty" Text="{Binding Lbl_Header_TotalQty}" Grid.Row="0" Grid.Column="1"
+                                                BackgroundColor="LightGray" FontAttributes="Bold" FontSize="15"
+                                                MinimumHeightRequest="20" HeightRequest="20" MinimumWidthRequest="20" WidthRequest="20"
+                                                TextColor="Black" Margin="0, 0, 0, 0" HorizontalTextAlignment="Center" />
+                                <Label x:Name="Lbl_Header_Total" Text="{Binding Lbl_Header_Total}" Grid.Row="0" Grid.Column="4"
+                                                BackgroundColor="LightGray" FontAttributes="Bold" FontSize="15"
+                                                MinimumHeightRequest="20" HeightRequest="20" MinimumWidthRequest="20" WidthRequest="20"
+                                                TextColor="Black" Margin="0, 0, 0, 0" HorizontalTextAlignment="Center" />
+                            </Grid>
+                        </ContentView>
+                        <StackLayout>
+                            <ListView x:Name="OrderListView" HasUnevenRows="True" RowHeight="-10" 
+                                       CachingStrategy="RecycleElement">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                        <ViewCell Height="130">
+                                            <ViewCell.ContextActions>
+                                                <MenuItem Clicked="OnDelete" 
+                                                        CommandParameter="{Binding i_num}" 
+                                                        Text="Delete" IsDestructive="True"/>
+                                            </ViewCell.ContextActions>
+                                            <ViewCell.View>
+                                                <Frame CornerRadius="5" Margin="2" HasShadow="True" BorderColor="DarkBlue" Padding="0">
+                                                    <StackLayout>
+                                                        <Grid Padding="0" Margin="0, 0, 0, 2" BackgroundColor="White">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="0.3*" />
+                                                                <RowDefinition Height="0.3*" />
+                                                                <RowDefinition Height="0.7*" />
+                                                                <!--<RowDefinition Height="0.2*" />-->
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width=".1*" />
+                                                                <ColumnDefinition Width=".4*" />
+                                                                <ColumnDefinition Width=".1*" />
+                                                                <ColumnDefinition Width=".4*" />
+                                                                <ColumnDefinition Width=".2*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Text="{Binding i_cartdisplay1}" Grid.Row="0" Grid.ColumnSpan="5" TextColor="Black"
+                                                           FontAttributes="Bold" FontSize="11" BackgroundColor="{Binding backColor}" HorizontalOptions="FillAndExpand"
+                                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Padding="0" Margin="0, 0, 0, 0"
+                                                           x:Name="Lbl_cartDisplay1" />
+                                                            <Label Text="{Binding i_cartdisplay2}" Grid.Row="1" Grid.ColumnSpan="5" TextColor="Black"
+                                                           FontAttributes="Bold" FontSize="11" BackgroundColor="{Binding backColor}" HorizontalOptions="FillAndExpand"
+                                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center"  Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_cartDisplay2" />
+                                                            <Label Text="Qty: " Grid.Row="2" Grid.Column="0" FontAttributes="Bold" FontSize="12" HorizontalTextAlignment="Center"
+                                                                        VerticalTextAlignment="Center" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_Qty1" WidthRequest="40"/>
+                                                            <Entry Text="{Binding i_qty}" Grid.Row="2" Grid.Column="1" FontAttributes="Bold" FontSize="25" ReturnType="Done"
+                                                           Unfocused="OnQtyChangePressed" Completed="OnQtyChangePressed" Keyboard="Numeric" ClearButtonVisibility="WhileEditing"
+                                                           VerticalOptions="EndAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                                                   Margin="0, 0, 0, 0" x:Name="entry_Qty" />
+                                                            <Label Text="Pri: " Grid.Row="2" Grid.Column="2" FontAttributes="Bold" FontSize="12" 
+                                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_Price1" />
+                                                            <Entry x:Name="entry_Price" Text="{Binding i_pri}" Grid.Row="2" Grid.Column="3" FontAttributes="Bold" FontSize="25"
+                                                           Unfocused="OnPriceChangePressed" Completed="OnPriceChangePressed" Keyboard="Numeric" ClearButtonVisibility="WhileEditing"
+                                                           VerticalOptions="EndAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0, 0, 0, 0"  />
+                                                            
+                                                            <Label Text="{Binding i_damt}" Grid.Row="2" Grid.Column="4" FontAttributes="Bold" FontSize="20"      
+                                                                        VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                                                        Padding="0" Margin="0, 0, 0, 0" x:Name="lbl_Amt" />
+
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </ViewCell.View>
+                                        </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        </StackLayout>
+                        <!--IconImageSource="remove100.png" for Menu Item-->
+                        <!--<listview:SfListView x:Name="OrderListView" ItemSize="100" AllowSwiping="True">
+                            <listview:SfListView.ItemTemplate>
+                                <DataTemplate x:Name="RightSwipeTemplate">
+                                    <ViewCell>
+                                        <Grid Padding="0" Margin="0, 0, 0, 2" BackgroundColor="LightBlue">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="0.15*" />
+                                                <RowDefinition Height="0.15*" />
+                                                <RowDefinition Height="0.6*" />
+                                                <RowDefinition Height="0.1*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Text="{Binding i_cartdisplay1}" Grid.Row="0" Grid.ColumnSpan="5" FontAttributes="Bold" FontSize="10" BackgroundColor="{Binding backColor}" TextColor="Black"
+                                                                        VerticalTextAlignment="Center" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_cartDisplay1" />
+                                            <Label Text="{Binding i_cartdisplay2}" Grid.Row="1" Grid.ColumnSpan="5" FontAttributes="Bold" FontSize="10" BackgroundColor="{Binding backColor}" TextColor="Black"
+                                                                        VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Start" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_cartDisplay2" />
+                                            <Label Text="Qty: " Grid.Row="2" Grid.Column="0" FontAttributes="Bold" FontSize="12" BackgroundColor="{Binding backColor}"
+                                                                        VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Start" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_Qty1" />
+                                            <Entry Text="{Binding i_qty}" Grid.Row="2" Grid.Column="1" FontAttributes="Bold" FontSize="20" BackgroundColor="{Binding backColor}" 
+                                                                        Unfocused="OnQtyChangePressed" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" WidthRequest="100"
+                                                                        VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0, 0, 0, 0" x:Name="entry_Qty" />
+                                            <Label Text="Price: " Grid.Row="2" Grid.Column="2" FontAttributes="Bold" FontSize="12" BackgroundColor="{Binding backColor}"
+                                                                        VerticalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Start" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_Price1" />
+                                            <Entry Text="{Binding i_pri}" Grid.Row="2" Grid.Column="3" FontAttributes="Bold" FontSize="20" BackgroundColor="{Binding backColor}"
+                                                                        Unfocused="OnPriceChangePressed" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" WidthRequest="100"
+                                                                        VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0, 0, 0, 0" x:Name="entry_Price" />
+                                            <Label Text="{Binding i_damt}" Grid.Row="2" Grid.Column="4" FontAttributes="Bold" FontSize="20" BackgroundColor="{Binding backColor}"       
+                                                                        VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                                                                        Padding="0" Margin="0, 0, 0, 0" x:Name="lbl_Amt" />
+                                            --><!--<Button Text="DEL" Grid.Row="0" Grid.Column="5" BackgroundColor="LightGray" BorderColor="Black" BorderWidth="1"
+                                                                FontAttributes="Bold" FontSize="Large" MinimumHeightRequest="40" HeightRequest="40"
+                                                                MinimumWidthRequest="20" WidthRequest="20" TextColor="Black" Padding="0" Margin="0, 0, 0, 0"
+                                                                Clicked="Btn_Delete_Clicked"  x:Name="Btn_Delete" CommandParameter="{Binding i_num}" />--><!--
+
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </listview:SfListView.ItemTemplate>
+                        </listview:SfListView>-->
+
+
+                        <ContentView>
+                            <Label x:Name="Remark" Text="Remarks:" TextDecorations="Underline" TextColor="Black" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" VerticalTextAlignment="Center" />
+                        </ContentView>
+                        <Grid>
+
+                            <Entry x:Name="Remark1" Grid.Row="0" Text="{Binding Remark1}" Placeholder="Enter Remark1" Margin="0" BackgroundColor="LightGray"
+                                        Unfocused="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark1"/>
+
+
+                            <Entry x:Name="Remark2" Grid.Row="1" Text="{Binding Remark2}" Placeholder="Enter Remark2" Margin="0" BackgroundColor="LightGray"
+                                        Unfocused="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark2"/>
+
+
+                            <Entry x:Name="Remark3" Grid.Row="2" Text="{Binding Remark3}" Placeholder="Enter Remark3" Margin="0" BackgroundColor="LightGray"
+                                        Unfocused="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark3"/>
+
+
+                            <Entry x:Name="Remark4" Grid.Row="3" Text="{Binding Remark4}" Placeholder="Enter Remark4" Margin="0" BackgroundColor="LightGray"
+                                        Unfocused="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark4"/>
+
+
+                            <!--<Entry x:Name="Remark5" Grid.Row="4" Text="{Binding Remark5}" Placeholder="Enter Remark5" Margin="0" BackgroundColor="LightGray"
+                                        Completed="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark5"/>
+
+
+                            <Entry x:Name="Remark6" Grid.Row="5" Text="{Binding Remark6}" Placeholder="Enter Remark6" Margin="0" BackgroundColor="LightGray"
+                                        Completed="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark6"/>-->
+                        
+                        <Button x:Name="BtnCancelOrder" Grid.Row="4" BorderWidth="1" BorderColor="Blue" BorderRadius="5" WidthRequest="50" Clicked="BtnCancelOrder_Clicked"
+                                    Text="Cancel This Order" HeightRequest="40" BackgroundColor="LightBlue" FontSize="20" FontAttributes="Bold"  Margin="0,0,0,0" />
+                            <ActivityIndicator Grid.Row="5" x:Name="activity_indicator" IsVisible="False"/>
+                        <Button x:Name="BtnSubmitOrder" Grid.Row="6" BorderWidth="1" BorderColor="Blue" BorderRadius="5" WidthRequest="50" Clicked="BtnSubmitOrder_Clicked"
+                                        Text="Submit Order" HeightRequest="40" BackgroundColor="LightBlue" FontSize="20" FontAttributes="Bold"  Margin="0,0,0,0" />
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

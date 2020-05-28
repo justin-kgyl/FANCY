@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.MainPage"
+             Visual="Default">
+
+    
+    <NavigationPage.TitleView>
+        <Label Text="On-The-Road Sales Manager" TextColor="Black" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center"/>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="MenuItem1" Order="Secondary"  Text="Set up" Priority="1" Clicked="MenuItem1_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <Frame Style="{StaticResource OuterFrame}">
+            <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Padding="1" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <Image Source="logo" Grid.Row="0" Grid.Column="0" Margin="20,0,20,0" Aspect="AspectFit" BackgroundColor="White" />
+                            <Entry x:Name="txtUser" Text="" Grid.Row="1" Grid.Column="0"  Margin="20,20,20,5" Placeholder="User ID" HorizontalTextAlignment="Start"></Entry>
+                            <Entry x:Name="txtPassword" Text="" Grid.Row="2" Grid.Column="0"  Margin="20,20,20,5" Placeholder="Password" IsPassword="True" HorizontalTextAlignment="Start"></Entry>
+                            <Label x:Name="lblRemember" Grid.Row="3" Grid.Column="0" IsVisible="False" />
+                            <Button x:Name="btnLogin" Grid.Row="4" Grid.Column="0"  Clicked="BtnLogin_Clicked" Margin="20,0,20,10" Text="Log in"  FontAttributes="Bold" TextColor="White" FontSize="20" BackgroundColor="#2298DC"></Button>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+                <!--Popup Area-->
+                <ContentView x:Name="popupSetupView" BackgroundColor="#d2cbd5" Padding="0, 0" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <StackLayout Orientation="Vertical" HeightRequest="150" WidthRequest="300" BackgroundColor="White">
+                            <Entry  x:Name="txtServerIpAddress" Margin="20,30,20,10" Placeholder="IP AddressHere" HorizontalTextAlignment="Center"></Entry>
+                            <Button x:Name="btnSetupEnter" Clicked="BtnSetupEnter_Clicked" Margin="20,0,20,0" Text="Save"></Button>
+                        </StackLayout>
+                    </StackLayout>
+                </ContentView>
+            </AbsoluteLayout>
+        </Frame>
+    </ContentPage.Content>
+    
+
+</ContentPage>

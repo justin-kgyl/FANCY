@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.DailyDetList"
+             Visual="Default">
+    
+    <ContentPage.Content>
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout>
+                <ListView x:Name="DailyDetListView"  HasUnevenRows="True" ItemTapped="OnItemSelected" CachingStrategy="RecycleElement"
+                          BackgroundColor="White" VerticalOptions="FillAndExpand">
+                    <ListView.Header>
+                        <StackLayout>
+                            <Grid Padding="3" BackgroundColor="Blue">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="Item" Margin="5,0,0,0" 
+                       TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+
+                                <Label Grid.Row="0" Grid.Column="1" Text="Description" 
+                       TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+
+                                <Label Grid.Row="0" Grid.Column="2" Text="Qty" 
+                       TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+
+                                <Label Grid.Row="0" Grid.Column="3" Text="Price" 
+                       TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+
+                                <Label Grid.Row="0" Grid.Column="4" Text="Amount" Margin="0,0,5,0" 
+                       TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+                            </Grid>
+                        </StackLayout>
+                    </ListView.Header>
+                    
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="0">
+                                    <Grid Padding="3">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding i_item}" FontSize="Small"  FontAttributes="None" TextColor="Blue"
+                                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding i_desc1}" FontSize="Small"  FontAttributes="None" TextColor="Black"
+                                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+
+                                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding i_qty}" FontSize="Small"  FontAttributes="None" TextColor="Black"
+                                               HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+
+                                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding i_pri, StringFormat='{0:C2}'}" FontSize="Small"  FontAttributes="None" TextColor="Black"
+                                               HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+
+                                        <Label Grid.Row="0" Grid.Column="4" Text="{Binding i_damt, StringFormat='{0:C2}'}" FontSize="Small"  FontAttributes="None" TextColor="Black"
+                                               HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+
+
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.Footer>
+                        <StackLayout>
+                            <Grid Padding="0" BackgroundColor="Gray">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Total" Grid.Column="1" Grid.Row="0" HorizontalOptions="End" Margin="0,5,0,0" TextColor="White" FontSize="Small" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                                <Label Text="" Grid.Column="2" Grid.Row="0" HorizontalOptions="End" x:Name="lbl_totqty" Margin="0,5,0,0" TextColor="White" FontSize="Small" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                                <Label Text="" Grid.Column="4" Grid.Row="0" HorizontalOptions="End" x:Name="lbl_totamt" Margin="0,5,3,0" TextColor="White" FontSize="Small" FontAttributes="Bold" VerticalOptions="Center"></Label>
+
+                                <Grid Padding="0" BackgroundColor="Black" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="Profit" Grid.Column="3" Grid.Row="0" Margin="0,5,0,0" TextColor="White" FontSize="Small" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start"></Label>
+                                    <Label Text="" x:Name="lbl_totprofit" Grid.Column="4" Grid.Row="0" Margin="0,5,3,0" TextColor="White" FontSize="Small" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Start"></Label>
+
+                                    <Label Text="Margin" Grid.Column="3" Grid.Row="0" Margin="0,12,0,0" TextColor="White" FontSize="Small" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Center"></Label>
+                                    <Label Text="" x:Name="lbl_totmargin" Grid.Column="4" Grid.Row="0" Margin="0,12,3,0" TextColor="White" FontSize="Small" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Center"></Label>
+                                </Grid>
+                            </Grid>
+
+                            
+                            
+                            
+                                
+                                <!--<Label Text="" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" x:Name="lbl_totprofit" Margin="0,0,3,0" TextColor="White" FontSize="Micro" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                                <Label Text="" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" x:Name="lbl_margin" Margin="0,0,3,0" TextColor="White" FontSize="Micro" FontAttributes="Bold" VerticalOptions="End"></Label>-->
+                            
+                        </StackLayout>
+                    </ListView.Footer>
+
+                </ListView>
+
+            </StackLayout>
+ 
+
+            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.CustomerInfo"
+             Visual="Material">
+    <ContentPage.Content>
+
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Padding="8">
+                <Label x:Name="lbl_NAME" FontSize="15" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Start" ></Label>
+                <Frame BorderColor="blue" Margin="0" HasShadow="True">
+                    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" x:Name="StackCust" >
+                        <Label x:Name="lbl_FullAddress"  FontSize="Small"/>
+                        <Label x:Name="lbl_ATTN" FontSize="Small"/>
+                        <!--<Label x:Name="lbl_REGION" FontSize="Small"/>-->
+                        <Label x:Name="lbl_TERM" FontSize="Small"/>
+                        <Label x:Name="lbl_BALANCE" FormattedText="" FontSize="Small"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="&#xF03FB;" TextColor="Green" BackgroundColor="Transparent" FontSize="Small" VerticalOptions="Center" FontFamily="Material-Icon"></Label>
+                            <Label x:Name="lbl_TEL" FontSize="Small" TextColor="Blue" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="lbl_TEL_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="&#xF10DC;" TextColor="Green" BackgroundColor="Transparent" FontSize="Small" VerticalOptions="Center" FontFamily="Material-Icon"></Label>
+                            <Label x:Name="lbl_EMAIL" FontSize="Small" TextColor="Blue" VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="lbl_EMAIL_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <StackLayout Padding="8">
+                <Label Text="Unpaid A/R" FontSize="15" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Start"></Label>
+                <Frame BorderColor="blue" Margin="0" HasShadow="True">
+                    <!--<Grid Padding="4" BackgroundColor="Blue">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40*" />
+                            <ColumnDefinition Width="30*" />
+                            <ColumnDefinition Width="30*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="Unpaid A/R" Margin="5,0,0,0" 
+                       TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="Invoice No" 
+                       TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+                        <Label Grid.Row="0" Grid.Column="2" Text="Balance" Margin="0,0,5,0" 
+                       TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+                    </Grid>-->
+
+                    <ListView x:Name="CustARView"  HasUnevenRows="True" CachingStrategy="RecycleElement">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="3" >
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="40*" />
+                                                <ColumnDefinition Width="30*" />
+                                                <ColumnDefinition Width="30*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding i_invdate, StringFormat='{}{0:MM/dd/yyyy}'}" FontSize="Small"  FontAttributes="Bold"  
+                                           Margin="0,0,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding i_invno}"  FontSize="Small"  
+                                           HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding i_invbal, StringFormat='{0:C}'}" FontSize="Small" 
+                                           Margin="0,0,0,0" HorizontalTextAlignment="End" TextColor="Blue" />
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </Frame>
+            </StackLayout>
+            <Grid Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.ColumnSpan="2"  x:Name="btn_InvList" Text="Customer's Invoice List" BackgroundColor="#EBEB0E" 
+                    Margin="5,0,5,0"  TextColor="Black" Clicked="Btn_Invlist_Clicked" ></Button>
+                <Button Grid.Row="1" Grid.Column="0" Text="New Entry (Multi)" TextColor="White" BackgroundColor="#2298DC" Margin="5,0,0,0" x:Name="btn_multi" Clicked="btn_multi_Clicked"></Button>
+                <Button Grid.Row="1" Grid.Column="1" Text="Quick Order" TextColor="White" BackgroundColor="#2298DC" Margin="0,0,5,0" x:Name="btn_quick" Clicked="btn_quick_Clicked"></Button>
+            </Grid>
+
+
+            <!--<StackLayout>
+                <Button x:Name="btn_InvList" Text="Customer's Invoice List" BackgroundColor="#EBEB0E" 
+                        Margin="5,0,5,0"  TextColor="Black" Clicked="Btn_Invlist_Clicked" ></Button>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand">
+                <Button Text="New Entry Format" TextColor="White" BackgroundColor="#2298DC" Margin="5,0,5,0" ></Button>
+                <Button Text="Quick Order" TextColor="White" BackgroundColor="#2298DC" Margin="5,0,5,0" ></Button>
+            </StackLayout>-->
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.Item"
+             Visual="Default">
+    
+    <ContentPage.Content>
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout Padding="5">
+                <Grid BackgroundColor ="Black">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*" />
+                        <ColumnDefinition Width="15*" />
+                        <ColumnDefinition Width="45*" />
+                        <ColumnDefinition Width="15*" />
+                        <ColumnDefinition Width="15*" />
+
+
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="Class" Margin="5,0,0,0" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                    <Label Grid.Row="0" Grid.Column="1" Text="Item"  TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                    <Label Grid.Row="0" Grid.Column="2" Text="Description"  TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                    <Label Grid.Row="0" Grid.Column="3" Text="Size"  TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                    <Label Grid.Row="0" Grid.Column="4" Text="Price" Margin="0,0,5,0" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+
+
+                </Grid>
+            </StackLayout>
+
+
+
+            <ListView x:Name="ItemListView"  HasUnevenRows="True" CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="4" >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10*" />
+                                        <ColumnDefinition Width="15*" />
+                                        <ColumnDefinition Width="45*" />
+                                        <ColumnDefinition Width="15*" />
+                                        <ColumnDefinition Width="15*" />
+                                    </Grid.ColumnDefinitions>
+                                    
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding I_CLASS}" FontSize="Small"  FontAttributes="Bold"  
+                                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding I_ID}"  FontSize="Small"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding I_DESC1}"  FontSize="Small"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding I_SIZE}"  FontSize="Small"  HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+                                    <Label Grid.Row="0" Grid.Column="4" Text="{Binding I_PRIC}"  FontSize="Small"  HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+
+
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

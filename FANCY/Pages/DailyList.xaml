@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.DailyList"
+             Visual="Default">
+    
+    <ContentPage.Content>
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout>
+                <ListView x:Name="DailyListView"  HasUnevenRows="True" ItemTapped="OnItemSelected"  CachingStrategy="RecycleElement"
+                          BackgroundColor="White" VerticalOptions="FillAndExpand">
+                    <ListView.Header>
+                        <StackLayout>
+                            <Grid Padding="3" BackgroundColor="Blue">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="Inv. No." Margin="5,0,0,0" 
+                       TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+
+                                <Label Grid.Row="0" Grid.Column="1" Text="Customer No." 
+                       TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+
+                                <Label Grid.Row="0" Grid.Column="2" Text="Name" 
+                       TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+
+                                <Label Grid.Row="0" Grid.Column="3" Text="Amount" Margin="0,0,5,0" 
+                       TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" 
+                       FontSize="Small" FontAttributes="Bold" />
+                            </Grid>
+                        </StackLayout>
+                    </ListView.Header>
+                    
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="4" >
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding i_invno}" FontSize="Small"  FontAttributes="None" TextColor="Blue"
+                                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding i_bill}" FontSize="Small"  FontAttributes="None" TextColor="Black"
+                                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+
+                                        <Label Grid.Row="0" Grid.Column="2" Text="{Binding i_bill1}" FontSize="Small"  FontAttributes="None" TextColor="Black"
+                                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center" />
+
+                                        <Label Grid.Row="0" Grid.Column="3" Text="{Binding i_invamt, StringFormat='{0:C2}'}" FontSize="Small"  FontAttributes="None" TextColor="Black"
+                                               HorizontalTextAlignment="End" VerticalTextAlignment="Center" />
+
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.Footer>
+                        <StackLayout>
+                            <Grid Padding="3" BackgroundColor="Gray">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" x:Name="lbl_totamt" Margin="0,0,3,0" TextColor="White" FontSize="Small" FontAttributes="Bold" VerticalOptions="Start"></Label>
+                                <Label Text="" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" x:Name="lbl_totprofit" Margin="0,1,3,0" TextColor="White" FontSize="Small" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                                <Label Text="" Grid.Column="0" Grid.Row="0" HorizontalOptions="End" x:Name="lbl_margin" Margin="0,0,3,0" TextColor="White" FontSize="Small" FontAttributes="Bold" VerticalOptions="End"></Label>
+                            </Grid>
+                        </StackLayout>
+                    </ListView.Footer>
+
+                </ListView>
+
+            </StackLayout>
+ 
+
+            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

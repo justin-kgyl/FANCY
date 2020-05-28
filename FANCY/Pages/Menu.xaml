@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.Menu"
+             Title="EZ Sales Manager"
+             BackgroundColor="#e5e5e5"
+             Visual="Default">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="" Clicked="Login_Clicked" 
+                      IconImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF0009;, Size=30, Color=white}" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+            <ScrollView VerticalOptions="StartAndExpand">
+                <StackLayout>
+
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Image  Grid.Row="0" Grid.Column="0" Source="slide_1.jpg" 
+                                    Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,0"/>
+
+                        <Label Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" x:Name="Lbl_Title">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span x:Name="lbl_Company" FontSize="Large" FontAttributes="Bold" ForegroundColor="White" />
+                                    <Span x:Name="lbl_Date" FontSize="17" ForegroundColor="White" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>                        
+                    </Grid>
+                    
+                    <StackLayout BackgroundColor="White">
+                        <Grid Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="85"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="25*" />
+                                <ColumnDefinition Width="25*" />
+                            </Grid.ColumnDefinitions>
+                            <Button BackgroundColor="White" Grid.Row="0" Grid.Column="0" Text="Order"   FontSize="Micro" ContentLayout="Top,0" 
+                                        ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF0ea6;, Size=40, Color=Orange}" 
+                                        HorizontalOptions="CenterAndExpand" Clicked="Btn_Order_Clicked" />
+                            <Button BackgroundColor="White" Grid.Row="0" Grid.Column="1" Text="A/R" FontSize="Micro" ContentLayout="Top,0" 
+                                        ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF1176;,Size=40,Color=Green}"
+                                        HorizontalOptions="CenterAndExpand" Clicked="Btn_AR_Clicked" />
+                            <Button BackgroundColor="White" Grid.Row="0" Grid.Column="2" Text="Cust." FontSize="Micro" ContentLayout="Top,0" 
+                                        ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF0016;,Size=40,Color=Red}"
+                                        HorizontalOptions="CenterAndExpand" Clicked="Btn_Cust_Clicked" />
+                        <Button BackgroundColor="White" Grid.Row="0" Grid.Column="3" Text="Data" FontSize="Micro" ContentLayout="Top,0" 
+                                        ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF0162;,Size=40,Color=Blue}"
+                                        HorizontalOptions="CenterAndExpand" Clicked="BtnUpdateData_Clicked" />
+                    </Grid>
+                    </StackLayout>                    
+                    
+                    <StackLayout BackgroundColor="White" VerticalOptions="FillAndExpand" HeightRequest="600">
+                            <Label Text="Outstanding Orders" TextColor="Black" FontAttributes="Bold" FontSize="Medium" Padding="10,0,0,0"
+                               BackgroundColor="White" HorizontalTextAlignment="Start"/>
+                            
+                            <ListView x:Name="ItemOrderList" HeightRequest="80" HasUnevenRows="True" HorizontalOptions="Center"
+					CachingStrategy="RecycleElement" SelectionMode="None" ItemTapped="OrderList_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                <ViewCell Height="100">
+                                    <ViewCell.View>
+                                        <Frame CornerRadius="5" Margin="5" HasShadow="True" BorderColor="DarkBlue" Padding="5">
+                                            <StackLayout>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="0.5*" />
+                                                        <RowDefinition Height="0.5*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50*" />
+                                                        <ColumnDefinition Width="50*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding ol_custn}" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" FontSize="14"
+                                                               VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                                                               HorizontalTextAlignment="Start" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_i_order" />
+
+                                                    <Label Text="{Binding ol_custadd}" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" FontSize="11"
+                                                                 VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                                                                 HorizontalTextAlignment="End" Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_address" />
+                                                    
+                                                    <Label Text="{Binding ol_cust}" Grid.Row="1" Grid.Column="0" FontAttributes="Bold" FontSize="11" 
+                                                                    HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Black"
+                                                                    Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_custname" />
+                                                    
+                                                    <Label Text="{Binding ol_damt, StringFormat='{0:$#,##0.00;($#,##0.00);Zero}'}" Grid.Row="1" Grid.Column="1" FontAttributes="Bold" FontSize="14"        
+                                                                VerticalTextAlignment="Center" HorizontalTextAlignment="End"
+                                                               Padding="0" Margin="0, 0, 0, 0" x:Name="Lbl_damt" TextColor="Black"/>
+                                                    
+
+                                                    <!--<Button Text="SUBMIT" Grid.Row="1" Grid.Column="2" BackgroundColor="LightGray" BorderColor="Black" BorderWidth="1"
+                                                                FontAttributes="Bold" FontSize="20" x:Name="Btn_submit"
+                                                                MinimumWidthRequest="100" WidthRequest="100" TextColor="Black" Padding="0" Margin="0, 0, 0, 0"
+                                                                Clicked="Btn_submit_Clicked"/>-->
+						    
+						                            <ActivityIndicator Grid.Row="1" Grid.Column="2" x:Name="activity_indicator"></ActivityIndicator>
+
+                                                </Grid>
+
+                                            </StackLayout>
+                                        </Frame>
+                                        
+                                    </ViewCell.View>
+                                    
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+                </StackLayout>
+            </ScrollView>
+ 
+        </StackLayout>
+</ContentPage>

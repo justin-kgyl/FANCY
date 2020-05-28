@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       mc:Ignorable="d"
+       xmlns:local="clr-namespace:FANCY.Pages"
+       Title="FANCY"
+       x:Class="FANCY.AppShell"
+       Visual="Material">
+    
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="#e5e5e5" />
+                <Setter Property="Shell.ForegroundColor" Value="Black" />
+                <Setter Property="Shell.TitleColor" Value="Black" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#e5e5e5" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="#707070"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#707070"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource NavigationPrimary}"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar Route="main">
+        <Tab Title="Home">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#xf02dc;" FontFamily="Material-Icon" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:Menu}" />
+        </Tab>
+        <Tab Title="Customer">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#xf0004;" FontFamily="Material-Icon" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:Cust}" />
+        </Tab>
+        <Tab Title="Items">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#xf0be0;" FontFamily="Material-Icon" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:ItemG}" />
+        </Tab>
+        <Tab Title="Orders">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#xf0111;" FontFamily="Material-Icon" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:CartList}" />
+        </Tab>
+        <Tab Title="Setting">
+            <Tab.Icon>
+                <FontImageSource Glyph="&#xf08bb;" FontFamily="Material-Icon" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:Setting}" />
+        </Tab>
+    </TabBar>
+    
+    <!--<Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid>
+                <Label Text="test"></Label>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>-->
+    
+    <!-- Optional Templates 
+    // These may be provided inline as below or as separate classes.
+
+    // This header appears at the top of the Flyout.
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid>ContentHere</Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    // ItemTemplate is for ShellItems as displayed in a Flyout
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <ContentView>
+                Bindable Properties: Title, Icon
+            </ContentView>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    // MenuItemTemplate is for MenuItems as displayed in a Flyout
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <ContentView>
+                Bindable Properties: Text, Icon
+            </ContentView>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    -->
+
+</Shell>

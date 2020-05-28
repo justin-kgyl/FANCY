@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.DataManagement"
+             Visual="Material">
+    
+        <StackLayout Padding="15,5,15,5">
+            
+            <!--<StackLayout  VerticalOptions="FillAndExpand">-->
+        <ScrollView>
+            <Frame VerticalOptions="FillAndExpand" Margin="5,15,5,15" BackgroundColor="LightGray" BorderColor="LightSkyBlue" HasShadow ="True" >
+            <StackLayout>
+                
+                <StackLayout>
+                    <Label x:Name="Lbl_UserName" FontSize="Medium" Padding="5" Margin="5"></Label>
+                </StackLayout>
+
+                <StackLayout Padding="0,5,0,5">
+                    <Grid RowSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="45" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Text="Create Local Data" FontSize="Small" TextColor="White" BackgroundColor="Blue" VerticalTextAlignment="Center" Padding="5"></Label>
+                        <Button Grid.Column="0" Grid.Row="1" x:Name="BtnCreateCart" BackgroundColor="Gray" Text="Create Cart and Remarks" FontAttributes="Bold" Clicked="BtnCreateCart_Clicked"/>
+                    </Grid>
+                </StackLayout>
+
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="1" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="45" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label  Grid.Row="0"  Grid.ColumnSpan="3" Text="Update Local data from remote Data" FontSize="Small" TextColor="White" BackgroundColor="blue" VerticalTextAlignment="Center" Padding="5" ></Label>
+                    <Switch Grid.Row="0"  Grid.Column="2" x:Name="SWT_All" HorizontalOptions="End" VerticalOptions="Center" ThumbColor="Green" Toggled="SWT_All_Toggled"></Switch>
+
+                    <Label  Grid.Row="1"  Grid.Column="0" Text="Item Class" FontAttributes="Bold" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Padding="5" ></Label>
+                    <Label  Grid.Row="1"  Grid.Column="1" x:Name="LBL_itemclass" FontAttributes="Bold" HorizontalOptions="Start" FontSize="Small"  VerticalOptions="Center"></Label>
+                    <Switch  Grid.Row="1"  Grid.Column="2"  x:Name="SWT_itemClass" HorizontalOptions="End" VerticalOptions="Center"></Switch>
+
+                    <BoxView Grid.Row="2"  Grid.ColumnSpan="3" BackgroundColor="DimGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                    <Label  Grid.Row="3"  Grid.Column="0" Text="Products" FontAttributes="Bold" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Padding="5"></Label>
+                    <Label  Grid.Row="3"  Grid.Column="1" x:Name="LBL_item" FontAttributes="Bold" HorizontalOptions="Start" FontSize="Small" VerticalOptions="Center"></Label>
+                    <Switch Grid.Row="3"  Grid.Column="2" x:Name="SWT_item" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
+                    <BoxView Grid.Row="4"  Grid.ColumnSpan="3" BackgroundColor="DimGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                    <Label  Grid.Row="5"  Grid.Column="0" Text="Customers" FontAttributes="Bold" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Padding="5"></Label>
+                    <Label  Grid.Row="5"  Grid.Column="1" x:Name="LBL_customer" FontAttributes="Bold" HorizontalOptions="Start" FontSize="Small" VerticalOptions="Center"></Label>
+                    <Switch Grid.Row="5"  Grid.Column="2" x:Name="SWT_customer" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
+                    <BoxView Grid.Row="6"  Grid.ColumnSpan="3" BackgroundColor="DimGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                    <Label Grid.Row="7"  Grid.Column="0" Text="Price" FontAttributes="Bold" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Padding="5" ></Label>
+                    <Label Grid.Row="7"  Grid.Column="1" x:Name="LBL_price" FontAttributes="Bold" HorizontalOptions="Start" FontSize="Small"  VerticalOptions="Center"></Label>
+                    <Switch Grid.Row="7"  Grid.Column="2" x:Name="SWT_price" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
+                    <BoxView Grid.Row="8"  Grid.ColumnSpan="3" BackgroundColor="DimGray" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                    <Label Grid.Row="9"  Grid.Column="0"  Text="A/R" FontAttributes="Bold" TextColor="Black" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Padding="5"></Label>
+                    <Label Grid.Row="9"  Grid.Column="1"  x:Name="LBL_ar" FontAttributes="Bold" HorizontalOptions="Start" FontSize="Small" VerticalOptions="Center"></Label>
+                    <Switch Grid.Row="9"  Grid.Column="2"  x:Name="SWT_ar" HorizontalOptions="End" VerticalOptions="Center" ></Switch>
+
+                    <ActivityIndicator Grid.Row="10" Grid.Column="1" HorizontalOptions="Center"  x:Name="activity_indicator" IsVisible="False" ></ActivityIndicator>
+                    <Button Grid.Row="11"  Grid.ColumnSpan="3" BackgroundColor="Gray"  x:Name="BtnUpdateAllData" Text="Start to Update" FontAttributes="Bold" Clicked ="BtnUpdateAllData_Clicked" />
+
+
+                    <!--<Label  Grid.Column="0" Grid.Row="15" Text="Other Menu" FontSize="Small" TextColor="White" BackgroundColor="blue" VerticalTextAlignment="Center" Padding="5"></Label>
+
+                    <StackLayout Grid.Column="0" Grid.Row="16" Orientation="Horizontal">
+                        <Button  x:Name="btn_Order" Text="Show all Orders" FontAttributes="Bold" 
+                            Clicked="Btn_Order_Clicked" />
+
+                        <Button x:Name="btn_Item" Text="Show all Items" FontAttributes="Bold"
+                        Clicked ="Btn_Item_Clicked" />
+
+                    </StackLayout>-->
+                </Grid>
+       
+            </StackLayout>
+
+        </Frame>
+                   </ScrollView>
+            <!--</StackLayout>-->
+
+        </StackLayout>
+        
+</ContentPage>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.InvoiceDetail"
+             Visual="Default">
+    
+    <ContentPage.Content>
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <!--<Label Text="Invoice No" x:Name="lbl_invno" FontSize="Small" Margin="5,5,0,0" FontAttributes="Bold" TextColor="Blue" ></Label>
+            <Label Text="Invoice List" x:Name="lbl_cust" FontSize="Small" Margin="5,0,0,0" FontAttributes="Bold" TextColor="Blue" ></Label>-->
+
+            <Grid Padding="4" BackgroundColor="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="40*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Item" Margin="5,0,0,0" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="1" Text="Description" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="2" Text="Qty" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="3" Text="Price" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="4" Text="Amt." TextColor="White" Margin="10,0,5,0"
+                       HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold"  />
+        </Grid>
+
+            <ListView x:Name="InvdetListView" HasUnevenRows="True" CachingStrategy="RecycleElement">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="4" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="15*" />
+                                        <ColumnDefinition Width="40*" />
+                                        <ColumnDefinition Width="10*" />
+                                        <ColumnDefinition Width="15*" />
+                                        <ColumnDefinition Width="20*" />
+                                    </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding i_item}" FontSize="Small"  FontAttributes="Bold"  
+                                               HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Margin="5,0,0,0" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding i_desc1}"  FontSize="Small"  HorizontalTextAlignment="Start" VerticalTextAlignment="Start" />
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding i_qty}"   FontSize="Small"  HorizontalTextAlignment="End" VerticalTextAlignment="Start" />
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding i_pri, StringFormat='{0:C}'}"   FontSize="Small"  HorizontalTextAlignment="End" VerticalTextAlignment="Start" />
+                                    <Label Grid.Row="0" Grid.Column="4" Text="{Binding i_damt,StringFormat='{0:C}'}"  FontSize="Small"  HorizontalTextAlignment="End" VerticalTextAlignment="Start"  Margin="10,0,5,0" />
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Padding="4" BackgroundColor="Black">
+            <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="55*" />
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Total" TextColor="White" HorizontalOptions="End" VerticalOptions="Center"></Label>
+                <Label Grid.Row="0" Grid.Column="1" x:Name="lbl_totQty"  TextColor="White" 
+                    HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold"  />
+                <Label Grid.Row="0" Grid.Column="2" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold"  />
+                <Label Grid.Row="0" Grid.Column="3" x:Name="lbl_totDamt"  TextColor="White" Margin="0,0,5,0"
+                    HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold"  />
+                <Label Grid.Row="1" Grid.Column="0" Text="Profit/Margin" TextColor="White" HorizontalOptions="End" VerticalOptions="Center"></Label>
+                <Label Grid.Row="1" Grid.Column="1" x:Name="lbl_profit"  TextColor="White" 
+                    HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold"  />
+                <Label Grid.Row="1" Grid.Column="3" x:Name="lbl_margin"  TextColor="White" 
+                    HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold"  />
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.Invoice"
+             Visual="Default">
+    
+    <ContentPage.Content>
+        <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+
+            <!--<Label Text="Invoice List" FontSize="Medium" Margin="5,5,5,5" TextColor="Blue" FontAttributes="Bold" ></Label>-->
+            
+            <Grid Padding="4" BackgroundColor="Black">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="30*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="No" Margin="5,0,0,0" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="1" Text="Date" TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="2" Text="Amount" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold" />
+                <Label Grid.Row="0" Grid.Column="3" Text="Balance" TextColor="White" Margin="0,0,5,0"
+                       HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontSize="Small" FontAttributes="Bold"  />
+            </Grid>
+
+            <ListView x:Name="InvListView" ItemTapped="OnItemSelected" HasUnevenRows="True" CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="4" >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*" />
+                                        <ColumnDefinition Width="20*" />
+                                        <ColumnDefinition Width="30*" />
+                                        <ColumnDefinition Width="30*" />
+                                    </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding i_id}" FontSize="Small"  FontAttributes="Bold"  
+                                               HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Margin="5,0,0,0" />
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding i_invdate, StringFormat='{}{0:MM/dd/yyyy}'}"  FontSize="Small"  HorizontalTextAlignment="Start" VerticalTextAlignment="Start" />
+                                    <Label Grid.Row="0" Grid.Column="2" Text="{Binding i_invamt, StringFormat='{0:C}'}"  FontSize="Small"  HorizontalTextAlignment="End" VerticalTextAlignment="Start" />
+                                    <Label Grid.Row="0" Grid.Column="3" Text="{Binding i_invbal, StringFormat='{0:C}'}"  FontSize="Small"  HorizontalTextAlignment="End" VerticalTextAlignment="Start"  Margin="0,0,5,0" />
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

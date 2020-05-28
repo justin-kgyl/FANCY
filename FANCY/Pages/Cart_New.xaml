@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:listview="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.Cart_New"
+             Title="Order Cart"
+             Visual="Default">
+    <!--<NavigationPage.TitleView>
+        <Label Text="ORDER PROCESS" HorizontalTextAlignment="Center" TextColor="Black" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
+    </NavigationPage.TitleView>-->
+    
+    <ContentPage.Content>
+        <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand">
+            <StackLayout AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="White" Padding="3" Margin="0" Spacing="0" VerticalOptions="FillAndExpand">
+                <ScrollView>
+                    <StackLayout Padding="0" Margin="0" Spacing="0">
+                        <StackLayout Padding="3" Margin="0" Spacing="0">
+                            <!-- Customer 정보-->
+                            <Frame BorderColor="blue" Margin="0" Padding="5"  >
+                                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" x:Name="StackCust" >
+                                    <Label x:Name="lbl_NAME"  FontSize="Small" TextColor="Black" />
+                                    <Label x:Name="lbl_FullAddress"  FontSize="Small"/>
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                                        <Label x:Name="lbl_TERM" FontSize="Small"/>
+                                        <Label x:Name="lbl_BALANCE" FormattedText="" FontSize="Small" Margin="15, 0, 0, 0"/>
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Padding="3" Margin="0" Spacing="0">
+                            <!-- item group search-->
+                            <Grid RowSpacing="0" ColumnSpacing="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="2*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Entry Grid.Row="0" Grid.Column="0" x:Name="txt_itemgroup" Completed="txt_itemgroup_Completed" Placeholder="Group Code"  
+                                       Visual="Material" Margin="0" FontSize="Small" ClearButtonVisibility="WhileEditing">
+                                </Entry>
+                                <Button Grid.Row="0" Grid.Column="1" x:Name="Btn_All"  Text="" FontSize="Small" BackgroundColor="blue" CornerRadius="5" Margin="0,0,0,2"
+                                    HorizontalOptions="End" Clicked="txt_itemgroup_Completed" 
+                                    ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF0866;, Size=30, Color=white}" />
+
+                            </Grid>
+                        </StackLayout>
+
+                        <StackLayout Padding="3" Margin="0" Spacing="0" x:Name="slo_btn_cart" Orientation="Horizontal">
+                            <!-- Add to Cart Button -->
+                            <Button BackgroundColor="LightBlue" x:Name="btn_cart" Text="&#xF0D66;  Add to Cart" CornerRadius="4" BorderColor="LightSkyBlue" BorderWidth="1" HeightRequest="35" Clicked="btn_cart_Clicked" WidthRequest="180" Padding="0" FontFamily="Material-Icon">
+                                <Button.FontSize>
+                                    <OnIdiom x:TypeArguments="x:Double" Phone="15" Tablet="25" />
+                                </Button.FontSize>
+                            </Button>
+                            <Switch x:Name="swt_show_cart" Toggled="swt_show_cart_Toggled" Margin="15,0,0,0"></Switch>
+                            <Label Text="Show Cart" VerticalOptions="Center" FontSize="Micro">
+                                <Label.FontSize>
+                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                </Label.FontSize>
+                            </Label>
+                        </StackLayout>
+
+                        <StackLayout Padding="3" Margin="0,0,0,0" x:Name="slo_ItemListView" Spacing="0" HeightRequest="600">
+                            <!-- item List-->
+                            <ListView Margin="0" x:Name="ItemListView" VerticalOptions="Start" HasUnevenRows="True" BackgroundColor="White" SelectionMode="None" CachingStrategy="RecycleElement">
+                                <!-- item ListView -->
+                                <ListView.Header>
+                                    <Grid Padding="3" BackgroundColor="Blue" RowSpacing="0" ColumnSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="22" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="50" />
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="Price" Margin="5,0,0,0" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                            <Label.FontSize>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                            </Label.FontSize>
+                                        </Label>
+                                        <Label Grid.Row="0" Grid.Column="2" Text="Qty" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                            <Label.FontSize>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                            </Label.FontSize>
+                                        </Label>
+                                        <Label Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="2" Text="Amount" Margin="0,0,5,0" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                            <Label.FontSize>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                            </Label.FontSize>
+                                        </Label>
+                                    </Grid>
+                                </ListView.Header>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Padding="0" Margin="0" ColumnSpacing="0" RowSpacing="0" x:Name="grd_1" ClassId="{Binding od_id}">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30" />
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="20*" />
+                                                    <ColumnDefinition Width="45*" />
+                                                    <ColumnDefinition Width="15*" />
+                                                    <ColumnDefinition Width="20*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Row="0" Grid.Column="0" x:Name="lbl_item" FontSize="Small" Text="{Binding od_id}" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" TextColor="Blue">
+                                                    <!--<Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                    </Label.FontSize>-->
+                                                </Label>
+                                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding od_desc2}" FontSize="Small" HorizontalTextAlignment="Start" VerticalTextAlignment="Center">
+                                                    <!--<Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                    </Label.FontSize>-->
+                                                </Label>
+                                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding od_minpri, StringFormat='Min: {0:C2}'}" FontSize="Small" HorizontalTextAlignment="End" VerticalTextAlignment="Center">
+                                                    <!--<Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                    </Label.FontSize>-->
+                                                </Label>
+                                                <Label Grid.Row="0" Grid.Column="3" Text="{Binding od_onhand, StringFormat='On-Hand: {0:F0}'}" FontSize="Small" HorizontalTextAlignment="End" VerticalTextAlignment="Center" TextColor="{Binding od_color}">
+                                                    <!--<Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                    </Label.FontSize>-->
+                                                </Label>
+
+                                                <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Padding="0, 0, 0, 10" Margin="0" x:Name="grd_2" ClassId="{Binding od_id}" ColumnSpacing="0" RowSpacing="0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="40" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="40" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="40" />
+                                                        <ColumnDefinition Width="40" />
+                                                        <ColumnDefinition Width="2*" />
+                                                        <ColumnDefinition Width="2*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Entry Grid.Row="0" Grid.Column="0" Text="{Binding od_pri, StringFormat='{0:F2}'}" x:Name="txt_pri" FontSize="12" 
+                                                                HorizontalTextAlignment="End" VerticalTextAlignment="Center" Unfocused="txt_pri_Unfocused">
+                                                        <!--<Entry.FontSize>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                        </Entry.FontSize>-->
+                                                    </Entry>
+                                                    <Button BackgroundColor="White" Grid.Row="0" Grid.Column="1" FontSize="Micro" CommandParameter="{Binding od_id}" x:Name="btn_Plus" 
+                                                                ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF09DC;, Size=45, Color=Blue}" 
+                                                                HorizontalOptions="CenterAndExpand" Clicked="btn_Plus_Clicked" />
+
+                                                    <Entry Grid.Row="0" Grid.Column="2" Text="{Binding od_qty, StringFormat='{0:F0}'}" x:Name="txt_qty" FontSize="12" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Unfocused="txt_qty_Unfocused">
+                                                        <!--<Entry.FontSize>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                        </Entry.FontSize>-->
+                                                    </Entry>
+
+                                                    <Button BackgroundColor="White" Grid.Row="0" Grid.Column="3" FontSize="Micro" CommandParameter="{Binding od_id}" x:Name="btn_Minus" 
+                                                                ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF09D6;, Size=45, Color=Orange}" 
+                                                                HorizontalOptions="CenterAndExpand" Clicked="btn_Minus_Clicked" />
+
+                                                    <Button BackgroundColor="White" Grid.Row="0" Grid.Column="4" FontSize="Micro" CommandParameter="{Binding od_id}" x:Name="btn_Hist" 
+                                                                ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF02DA;, Size=45, Color=HotPink}" 
+                                                                HorizontalOptions="CenterAndExpand" Clicked="btn_Hist_Clicked" />
+
+                                                    <Label Grid.Row="0" Grid.Column="6" Text="{Binding od_damt, StringFormat='{0:C2}'}" x:Name="lbl_damt" FontSize="12" HorizontalTextAlignment="End" VerticalTextAlignment="Center">
+                                                        <!--<Label.FontSize>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                        </Label.FontSize>-->
+                                                    </Label>
+                                                </Grid>
+
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+                        <StackLayout Padding="3" Margin="0,0,0,0" Spacing="0" x:Name="SL_CartListView">
+                            <!-- Cart View -->
+                            <ListView x:Name="CartListView" Margin="0,0,0,0" VerticalOptions="Start" BackgroundColor="#eaeaea"  CachingStrategy="RecycleElement">
+                                <ListView.Header>
+                                    <StackLayout>
+                                        <Grid Padding="3" BackgroundColor="Blue" Margin="0,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="22" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="1.5*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="1.5*" />
+                                                <ColumnDefinition Width="0.7*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="Item" Margin="5,0,0,0" 
+                                        TextColor="White" HorizontalTextAlignment="Start" FontSize="Micro" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                                <!--<Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                </Label.FontSize>-->
+                                            </Label>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="Description" FontSize="Micro" Margin="0,0,0,0" 
+                                        TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                                <!--<Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                </Label.FontSize>-->
+                                            </Label>
+                                            <Label Grid.Row="0" Grid.Column="2" Text="Qty" Margin="0,0,0,0" FontSize="Micro" 
+                                        TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                                <!--<Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                </Label.FontSize>-->
+                                            </Label>
+                                            <Label Grid.Row="0" Grid.Column="3" Text="Price" Margin="0,0,0,0" TextColor="White" FontSize="Micro" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                                <!--<Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                </Label.FontSize>-->
+                                            </Label>
+                                            <Label Grid.Row="0" Grid.Column="4" Text="Amount" Margin="0,0,5,0" TextColor="White" FontSize="Micro" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                                <!--<Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                </Label.FontSize>-->
+                                            </Label>
+                                        </Grid>
+                                    </StackLayout>
+                                </ListView.Header>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:Name="RightSwipeTemplate">
+                                        <ViewCell>
+                                            <!--<ViewCell.ContextActions>
+                                                <MenuItem Clicked="OnDelete" 
+                                                    CommandParameter="{Binding i_num}" 
+                                                    Text="{Binding i_item, StringFormat='Delete: {0}'}" IsDestructive="True"/>
+                                            </ViewCell.ContextActions>-->
+                                            <StackLayout Padding="3" >
+                                                <Grid Padding="0" Margin="0, 0, 0, 0">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="1.5*" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="1.5*" />
+                                                        <ColumnDefinition Width="0.7*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding i_item}" Grid.Row="0" Grid.Column="0" FontSize="11"
+                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Padding="0" Margin="0, 0, 0, 0" />
+                                                    <Label Text="{Binding i_desc1}" Grid.Row="0" Grid.Column="1" FontSize="10"
+                                           VerticalTextAlignment="Center" HorizontalTextAlignment="Start" Padding="0" Margin="0, 0, 0, 0" />
+                                                    <Label Text="{Binding i_qty}" Grid.Row="0" Grid.Column="2" FontSize="10"
+                                           VerticalTextAlignment="Center" HorizontalTextAlignment="End" Padding="0" Margin="0, 0, 0, 0" />
+                                                    <Label Text="{Binding i_pri, StringFormat='{0:C2}'}" Grid.Row="0" Grid.Column="3" FontSize="10"
+                                           VerticalTextAlignment="Center" HorizontalTextAlignment="End" Padding="0" Margin="0, 0, 0, 0" />
+                                                    <Label Text="{Binding i_damt, StringFormat='{0:C2}'}" Grid.Row="0" Grid.Column="4" FontSize="10"
+                                           VerticalTextAlignment="Center" HorizontalTextAlignment="End" Padding="0" Margin="0, 0, 5, 0" />
+
+                                                    <Button BackgroundColor="Transparent" Grid.Row="0" Grid.Column="5" FontSize="Micro" CommandParameter="{Binding i_num}" x:Name="btn_remove_item" 
+                                                    ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF0A7A;, Size=30, Color=Red}" 
+                                                    HorizontalOptions="CenterAndExpand" Clicked="btn_remove_item_Clicked" />
+
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Footer>
+                                    <StackLayout>
+                                        <Grid Padding="3" BackgroundColor="Gray">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="22" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="1.5*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="1.5*" />
+                                                <ColumnDefinition Width="0.7*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="Total" TextColor="White" FontSize="Micro" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                                <!--<Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                </Label.FontSize>-->
+                                            </Label>
+                                            <Label Grid.Row="0" Grid.Column="2" Text="0" x:Name="lbl_total_qry" FontSize="Micro" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                                <!--<Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                </Label.FontSize>-->
+                                            </Label>
+                                            <Label Grid.Row="0" Grid.Column="4" Text="0" Margin="0,0,5,0" FontSize="Micro" x:Name="lbl_total_damt" TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" FontAttributes="Bold">
+                                                <!--<Label.FontSize>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                </Label.FontSize>-->
+                                            </Label>
+
+                                            <StackLayout BackgroundColor="White" Margin="0,0,0,0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Padding="0,0,0,3" Spacing="0">
+                                                <StackLayout BackgroundColor="White" Margin="0,0,0,0" Orientation="Horizontal" HeightRequest="45">
+                                                    <Entry Placeholder="Remark1" x:Name="txt_rem1" FontSize="Micro" HorizontalOptions="FillAndExpand" Unfocused="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark1">
+                                                        <!--<Entry.FontSize>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                        </Entry.FontSize>-->
+                                                    </Entry>
+                                                    <Entry Placeholder="Remark2" x:Name="txt_rem2" FontSize="Micro" HorizontalOptions="FillAndExpand" Unfocused="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark2">
+                                                        <!--<Entry.FontSize>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                        </Entry.FontSize>-->
+                                                    </Entry>
+                                                </StackLayout>
+                                                <StackLayout BackgroundColor="White" Margin="0,0,0,0" Orientation="Horizontal" HeightRequest="40" Padding="0" Spacing="0">
+                                                    <Entry Placeholder="Remark3" x:Name="txt_rem3" FontSize="Micro" HorizontalOptions="FillAndExpand" Unfocused="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark3">
+                                                        <!--<Entry.FontSize>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                        </Entry.FontSize>-->
+                                                    </Entry>
+                                                    <Entry Placeholder="Remark4" x:Name="txt_rem4" FontSize="Micro" HorizontalOptions="FillAndExpand" Unfocused="RemarkPressed" ClearButtonVisibility="WhileEditing" BindingContext="Remark4">
+                                                        <!--<Entry.FontSize>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                        </Entry.FontSize>-->
+                                                    </Entry>
+                                                </StackLayout>
+                                                <StackLayout Margin="0,0,0,0" Padding="0" Spacing="0" HeightRequest="40" BackgroundColor="White" HorizontalOptions="Center">
+                                                    <Grid Padding="0" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="White">
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="40" />
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="10*" />
+                                                            <ColumnDefinition Width="10*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Button Grid.Row="0" Grid.Column="0" Text="&#xF073A; Cancel Order" x:Name="btn_cancel" TextColor="White" BackgroundColor="#2298DC" Margin="5,0,5,0" CornerRadius="4" Clicked="btn_cancel_Clicked" 
+                                                        FontFamily="Material-Icon"></Button>
+
+                                                        <ActivityIndicator Grid.Row="0" Grid.Column="1" x:Name="activity_indicator"></ActivityIndicator>
+                                                        <Button Grid.Row="0" Grid.Column="1" Text="&#xF0D6A; Submit Order" x:Name="btn_submit" TextColor="White" BackgroundColor="#2298DC" Margin="0,0,5,0" CornerRadius="4" Clicked="btn_submit_Clicked" 
+                                                        FontFamily="Material-Icon"></Button>
+                                                    </Grid>
+
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </ListView.Footer>
+                            </ListView>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+            <!--Popup Area-->
+            <ContentView x:Name="popupDetHistoryView" BackgroundColor="Transparent" Padding="0, 0" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout Padding="0,0,0,0" WidthRequest="400" HeightRequest="155" VerticalOptions="Start" HorizontalOptions="Center" Margin="0, 30">
+                    <Frame BorderColor="Blue" Padding="2" Margin="0">
+                        <ListView Margin="0,0,0,0" x:Name="detHistoryView" HasUnevenRows="True" BackgroundColor="White" VerticalOptions="StartAndExpand" SelectionMode="None"  CachingStrategy="RecycleElement" ClassId="{Binding od_id}">
+                            <ListView.Header>
+                                <StackLayout>
+                                    <Grid Padding="3" BackgroundColor="LightBlue">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="22" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="30" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="Item" Margin="5,0,0,0" FontSize="Micro" 
+                                                               TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                                                               FontAttributes="Bold">
+                                            <!--<Label.FontSize>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                            </Label.FontSize>-->
+                                        </Label>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="Inv.#" FontSize="Micro" 
+                                                               TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                                                               FontAttributes="Bold">
+                                            <!--<Label.FontSize>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                            </Label.FontSize>-->
+                                        </Label>
+
+                                        <Label Grid.Row="0" Grid.Column="2" Text="Date" FontSize="Micro" 
+                                                               TextColor="White" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" 
+                                                               FontAttributes="Bold">
+                                            <!--<Label.FontSize>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                            </Label.FontSize>-->
+                                        </Label>
+
+                                        <Label Grid.Row="0" Grid.Column="3" Text="Price" Margin="0,0,5,0" FontSize="Micro" 
+                                                               TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center" 
+                                                               FontAttributes="Bold">
+                                            <!--<Label.FontSize>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                            </Label.FontSize>-->
+                                        </Label>
+
+                                    </Grid>
+                                </StackLayout>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="0" x:Name="slo_3_1">
+                                            <Grid Padding="5,0,5,0" x:Name="grd_3">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*" />
+                                                    <ColumnDefinition Width="1*" />
+                                                    <ColumnDefinition Width="1*" />
+                                                    <ColumnDefinition Width="1*" />
+                                                    <ColumnDefinition Width="30" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding i_item}" FontSize="Micro" HorizontalOptions="Start" VerticalOptions="Center">
+                                                    <!--<Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                    </Label.FontSize>-->
+                                                </Label>
+                                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding i_id}" FontSize="Micro" HorizontalOptions="Start" VerticalOptions="Center">
+                                                    <!--<Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                    </Label.FontSize>-->
+                                                </Label>
+                                                <Label Grid.Row="0" Grid.Column="2" FontSize="Micro" Text="{Binding i_invdate, StringFormat='{0:MM/dd/yyyy}'}" HorizontalOptions="Start" VerticalOptions="Center">
+                                                    <!--<Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                    </Label.FontSize>-->
+                                                </Label>
+                                                <Label Grid.Row="0" Grid.Column="3" FontSize="Micro" Text="{Binding i_pri, StringFormat='{0:C2}'}" HorizontalOptions="End" VerticalOptions="Center">
+                                                    <!--<Label.FontSize>
+                                                        <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="20" />
+                                                    </Label.FontSize>-->
+                                                </Label>
+
+                                                <Button BackgroundColor="White" Grid.Row="0" Grid.Column="4" FontSize="Micro" CommandParameter="{Binding i_pri}" x:Name="btn_Invdet" 
+                                                                        ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF0B2D;, Size=30, Color=HotPink}" 
+                                                                        HorizontalOptions="CenterAndExpand" Clicked="btn_Invdet_Clicked" />
+
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListView.Footer>
+                                <StackLayout>
+                                    <Grid Padding="5,0,5,0" x:Name="grd_3">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="30" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button BackgroundColor="White" FontSize="Micro" x:Name="btn_Close" Grid.Column="4"
+                                                                        ImageSource="{FontImage FontFamily=Material-Icon, Glyph=&#xF0157;, Size=30, Color=Red}" 
+                                                                        HorizontalOptions="End" Clicked="btn_Close_Clicked" />
+                                    </Grid>
+
+
+
+                                </StackLayout>
+                            </ListView.Footer>
+
+
+
+                        </ListView>
+                    </Frame>
+                    
+                </StackLayout>
+            </ContentView>
+            
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

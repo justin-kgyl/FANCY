@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FANCY.Pages.Gate" BackgroundColor="White"
+             Visual="Material">
+    
+    <ContentPage.Content>
+        <StackLayout  Padding="10,10,10,10">
+            <Frame Style="{StaticResource OuterFrame}">
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center"  BackgroundColor="White">
+                    <!--<StackLayout VerticalOptions="Center" HorizontalOptions="Center"  HeightRequest="350" WidthRequest="250" BackgroundColor="White">-->
+                        <Grid Padding="10,20,10,20">
+                        <Grid.RowDefinitions>
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="80" />
+                     </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="0" Grid.Column="0" Source="http://www.nyfancynatural.com/wp-content/uploads/2016/08/logo.png" Margin="20,20,20,0"  
+                                Aspect="AspectFit" BackgroundColor="White" />
+                        <Button Grid.Row="1" Grid.Column="0" x:Name="btn_IP"  Text="&#xF070F;  IP Setup" Clicked="BtnIP_Clicked" Margin="20,5,20,0" FontFamily="Material-Icon" FontSize="Medium" />
+
+                        <Entry Grid.Row="2" Grid.Column="0" x:Name="txt_IP" Text="" Margin="20,0,20,0" Placeholder="Web Address" 
+                                HorizontalTextAlignment="Start" IsVisible="False"  ></Entry>
+                        <Entry Grid.Row="3" Grid.Column="0" x:Name="txtUser" Text=""  Margin="20,0,20,0" Placeholder="User ID" HorizontalTextAlignment="Start"></Entry>
+                        <Entry Grid.Row="4" Grid.Column="0" x:Name="txtPassword" Text=""  Margin="20,0,20,0" Placeholder="Password" IsPassword="True" HorizontalTextAlignment="Start"></Entry>
+                        <Label Grid.Row="5" Grid.Column="0" x:Name="lblRemember"  IsVisible="False" />
+                        <Button Grid.Row="6" Grid.Column="0" x:Name="btnLogin"   Margin="20,0,20,10" Clicked="BtnLogin_Clicked" Text="&#xf0342;  Log in"  FontAttributes="Bold" BackgroundColor="#2298DC"
+                                FontFamily="Material-Icon" FontSize="Large" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </StackLayout>        
+    </ContentPage.Content>
+</ContentPage>
