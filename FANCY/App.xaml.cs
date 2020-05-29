@@ -23,6 +23,8 @@ namespace FANCY
             {
                 MainPage = new AppShell();
             }
+
+            //test1111
         }
 
         protected override void OnStart()
