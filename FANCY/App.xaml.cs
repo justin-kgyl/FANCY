@@ -24,7 +24,7 @@ namespace FANCY
                 MainPage = new AppShell();
             }
 
-            //test1111 hi t=her
+            //test1111
         }
 
         protected override void OnStart()
